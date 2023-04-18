@@ -12,7 +12,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableDiscoveryClient 
 public class AttendanceServiceApplication {
-
 	/**
 	 * The main method.
 	 *
