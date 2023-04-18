@@ -1,0 +1,75 @@
+server:
+  port: 8081
+  servlet:
+    context-path: /ply
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+  devtools:
+    restart:
+      enabled: true
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer 
+    
+#spring.cloud.config.enabled=false
+#management.endpoints.web.exposure.include=mappings,info,beans,health,routes,httptrace,hystrix.stream
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url: 
+         defaultZone: http://localhost:8761/eureka
+    instance:
+      preferIpAddress: true
+      
+#spring.datasource.url = jdbc:h2:file:/data/sample
+#spring.datasource.url = jdbc:h2:file:C:/data/sample
+
+# Enabling H2 Console
+
+# Custom H2 Console URL
+  application:
+    name: attendance-service
+  h2:
+    console:
+      path: /h2
+      enabled: true
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    database-platform: org.hibernate.dialect.H2Dialect 
+    properties:
+      hibernate:
+        format-sql: true   
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+    
+springdoc:
+  show-actuator: true
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+              
