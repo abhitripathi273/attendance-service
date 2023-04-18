@@ -6,10 +6,18 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * The Class AttendanceServiceApplication.
+ */
 @SpringBootApplication
 @EnableDiscoveryClient 
 public class AttendanceServiceApplication {
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(AttendanceServiceApplication.class, args);
 	}
