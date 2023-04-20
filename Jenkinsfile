@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir("/var/jenkins_home/workspace/demopipelinetask/attendance-service") {
+                dir("/var/jenkins_home/workspace/attendance-service_master") {
                 sh 'mvn -B -DskipTests clean package'
                 }
             }
