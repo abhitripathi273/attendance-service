@@ -10,17 +10,23 @@ pipeline {
     }
     stages {
 	
-		stage('Initialize'){
+	stage('Initialize'){
             steps{
                 echo "PATH = ${M2_HOME}/bin:${PATH}"
                 echo "M2_HOME = /opt/maven"
             }
         }
-		
+	stage('Build') {
+            steps {
+                dir("/var/jenkins_home/workspace/attendance-service_master") {
+                sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }	
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build("vigneshsweekaran/hello-world:${TAG}")
+                    docker.build("abhitripathi273/attendance-service:${TAG}")
                 }
             }
         }
@@ -32,7 +38,7 @@ pipeline {
                 }
             }
         }
-	    stage('Pushing Docker Image to Dockerhub') {
+	stage('Pushing Docker Image to Dockerhub') {
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'docker_credential') {
