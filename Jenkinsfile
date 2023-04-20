@@ -17,22 +17,14 @@ pipeline {
             }
         }
 		
-        stage ('Build') {
+        stage('Docker Build') {
             steps {
-                dir("/var/jenkins_home/workspace/attendance-service_master") {
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
-		stage('Test') {
-            steps {
-                sh 'mvn test'
-            }
-            post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
+                script {
+                    docker.build("vigneshsweekaran/hello-world:${TAG}")
                 }
             }
         }
+	
         stage('Docker Build') {
             steps {
                 script {
