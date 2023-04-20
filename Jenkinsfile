@@ -23,15 +23,7 @@ pipeline {
                 }
             }
         }	
-        stage('Docker Build') {
-            steps {
-                script {
-                    docker.build("abhitripathi273/attendance-service:${TAG}")
-                }
-            }
-        }
-	
-        stage('Docker Build') {
+    stage('Docker Build') {
             steps {
                 script {
                     docker.build("abhitripathi273/attendance-service:${TAG}")
@@ -48,7 +40,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy'){
+    stage('Deploy'){
             steps {
                 sh "docker stop attendance-service| true"
                 sh "docker rm attendance-service | true"
