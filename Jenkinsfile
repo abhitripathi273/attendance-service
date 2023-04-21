@@ -7,7 +7,7 @@ pipeline {
         DATE = new Date().format('yy.M')
         TAG = "${DATE}.${BUILD_NUMBER}"
     }
-    
+    stages {
 	stage('Initialize'){
             steps{
 		def dockerHome = tool 'myDocker'
